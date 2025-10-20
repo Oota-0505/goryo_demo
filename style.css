@@ -609,6 +609,7 @@ img {
 }
 
 .feature-description {
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-weight: 500;
     line-height: 1.67;
