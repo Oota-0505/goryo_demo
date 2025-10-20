@@ -9,21 +9,42 @@ function initHeroSlider() {
     totalSlides = heroSlides.length;
     
     if (totalSlides > 0) {
+        // すべてのスライドを非アクティブにする
+        heroSlides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // 最初のスライドをアクティブにする
         showSlide(0);
-        heroSliderInterval = setInterval(nextSlide, 4000);
+        
+        // 自動スライド開始
+        if (heroSliderInterval) {
+            clearInterval(heroSliderInterval);
+        }
+        heroSliderInterval = setInterval(nextSlide, 3000);
     }
 }
 
 function showSlide(index) {
-    heroSlides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
+    if (totalSlides === 0) return;
+    
+    // すべてのスライドを非アクティブにする
+    heroSlides.forEach(slide => {
+        slide.classList.remove('active');
     });
+    
+    // 指定されたスライドをアクティブにする
+    if (heroSlides[index]) {
+        heroSlides[index].classList.add('active');
+    }
+    
+    currentSlide = index;
 }
 
 function nextSlide() {
     if (totalSlides > 0) {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        showSlide(currentSlide);
+        const nextIndex = (currentSlide + 1) % totalSlides;
+        showSlide(nextIndex);
     }
 }
 
@@ -169,7 +190,7 @@ function initFlowSteps() {
 
 // Parallax Effect
 function initParallax() {
-    const parallaxElements = document.querySelectorAll('.parallax-bg, .hero-slide img');
+    const parallaxElements = document.querySelectorAll('.parallax-bg');
     let ticking = false;
 
     function updateParallax() {
@@ -184,12 +205,12 @@ function initParallax() {
             element.style.transform = `translateY(${yPos}px)`;
         });
 
-        // Hero images parallax
-        const heroImages = document.querySelectorAll('.hero-slide img');
-        heroImages.forEach(img => {
+        // Hero images parallax - アクティブなスライドの画像のみに適用
+        const activeHeroImage = document.querySelector('.hero-slide.active img');
+        if (activeHeroImage) {
             const yPos = -(scrollTop * 0.2);
-            img.style.transform = `translateY(${yPos}px) scale(1.05)`;
-        });
+            activeHeroImage.style.transform = `translateY(${yPos}px) scale(1.05)`;
+        }
 
         ticking = false;
     }
@@ -207,6 +228,7 @@ function initParallax() {
 // Initialize slider when page loads
 document.addEventListener('DOMContentLoaded', () => {
     initHeroSlider();
+    initHeroHoverControl();
     initHeaderScroll();
     initFloatingCTA();
     initHamburgerMenu();
@@ -251,20 +273,23 @@ function initFloatingCTA() {
     }
 }
 
-// Pause on hover
-const heroSection = document.querySelector('.hero');
-if (heroSection) {
-    heroSection.addEventListener('mouseenter', () => {
-        if (heroSliderInterval) {
-            clearInterval(heroSliderInterval);
-        }
-    });
-    
-    heroSection.addEventListener('mouseleave', () => {
-        if (totalSlides > 0) {
-            heroSliderInterval = setInterval(nextSlide, 4000);
-        }
-    });
+// Pause on hover (moved to function to ensure proper initialization)
+function initHeroHoverControl() {
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', () => {
+            if (heroSliderInterval) {
+                clearInterval(heroSliderInterval);
+                heroSliderInterval = null;
+            }
+        });
+        
+        heroSection.addEventListener('mouseleave', () => {
+            if (totalSlides > 0 && !heroSliderInterval) {
+                heroSliderInterval = setInterval(nextSlide, 3000);
+            }
+        });
+    }
 }
 
 // Voice Slider
