@@ -1,23 +1,89 @@
-// Floating CTA scroll effect
-function initFloatingCTA() {
-    const floatingCTA = document.querySelector('.floating-cta');
+// Intersection Observer for scroll animations
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements with animation classes
+    document.querySelectorAll('.animate-on-scroll, .greeting-animate').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// Header scroll effect
+function initHeaderScroll() {
+    const header = document.querySelector('.header');
     
-    if (floatingCTA) {
+    if (header) {
         window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            const showThreshold = 300; // 300pxスクロールしたら表示
-            
-            if (scrollTop > showThreshold) {
-                floatingCTA.classList.add('visible');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
             } else {
-                floatingCTA.classList.remove('visible');
+                header.classList.remove('scrolled');
             }
         });
     }
 }
 
-// Initialize when page loads
+// Smooth scroll for anchor links
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// Hamburger menu functionality
+function initHamburgerMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on menu items
+        mobileMenu.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    initFloatingCTA();
+    initScrollAnimations();
+    initHeaderScroll();
+    initSmoothScroll();
+    initHamburgerMenu();
 });
 

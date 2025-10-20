@@ -1,88 +1,17 @@
 /* Company Page Specific Styles */
 
-/* Header */
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    padding: 10px 0;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    transition: background 0.3s ease, padding 0.3s ease;
+/* Animation Classes */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
 }
 
-.header.scrolled .nav-item {
-    color: #000;
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.header.scrolled .contact-btn {
-    color: #000;
-    border-color: #000;
-}
-
-.header-content {
-    max-width: 1440px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
-}
-
-.logo {
-    width: 280px;
-}
-
-.logo a {
-    display: block;
-    text-decoration: none;
-}
-
-.logo img {
-    width: 100%;
-    transition: opacity 0.3s ease;
-}
-
-.logo a:hover img {
-    opacity: 0.8;
-}
-
-.nav {
-    display: flex;
-    gap: 6px;
-}
-
-.nav-left,
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 0;
-}
-
-.nav-item {
-    color: #000;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    padding: 4px 0;
-    position: relative;
-    white-space: nowrap;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.nav-item:hover {
-    opacity: 0.7;
-}
-
-.nav-right .nav-item {
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 .company-main {
     padding-top: 80px;
@@ -101,7 +30,7 @@
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: 0.111em;
-    color: #379429;
+    color: #E70012;
     margin-bottom: 8px;
 }
 
@@ -117,7 +46,7 @@
 .section-divider {
     width: 72px;
     height: 1px;
-    background: #379429;
+    background: #E70012;
     margin: 0 auto;
 }
 
@@ -170,7 +99,7 @@
     font-weight: 700;
     line-height: 1.7;
     letter-spacing: 0.05em;
-    color: #103306;
+    color: #000;
     margin: 0;
 }
 
@@ -197,15 +126,27 @@
 }
 
 .company-info-container {
-    max-width: 880px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 0 44px;
+    padding: 0 20px;
 }
 
 .company-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 42.5px;
+    table-layout: fixed;
+    position: relative;
+}
+
+.company-table tbody tr:first-child th::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #E70012, transparent);
 }
 
 .company-table tbody tr {
@@ -223,11 +164,23 @@
     font-weight: 700;
     line-height: 1.8;
     letter-spacing: 0.08em;
-    color: #103306;
+    color: #000000;
     text-align: left;
     padding: 32px;
-    width: 348.95px;
+    width: 25%;
+    min-width: 200px;
     vertical-align: top;
+    position: relative;
+}
+
+.company-table th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #E70012, transparent);
 }
 
 .company-table td {
@@ -239,6 +192,8 @@
     color: #0D0D0D;
     padding: 33.39px 22.5px;
     vertical-align: top;
+    width: 75%;
+    word-wrap: break-word;
 }
 
 /* 関連会社 */
@@ -346,7 +301,7 @@
     font-weight: 700;
     line-height: 1.4;
     letter-spacing: 0.0267em;
-    color: #2C8843;
+    color: #000000;
     text-align: center;
     margin: 0 0 60px 0;
 }
@@ -377,7 +332,7 @@
     font-weight: 700;
     line-height: 1.8;
     letter-spacing: 0.08em;
-    color: #103306;
+    color: #000000;
     text-align: left;
     padding: 15.5px 17px 17.3px;
     width: 468.93px;
@@ -417,9 +372,6 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-    .header-content {
-        padding: 0 20px;
-    }
     
     .company-greeting-container {
         grid-template-columns: 1fr;
@@ -446,9 +398,6 @@
 }
 
 @media (max-width: 768px) {
-    .nav {
-        display: none;
-    }
     
     .section-title-en {
         font-size: 28px;
@@ -458,14 +407,14 @@
         font-size: 18px;
     }
     
-    .greeting-section,
+    .company-greeting-section,
     .company-info-section,
     .history-section,
     .qualifications-section {
         padding: 80px 0;
     }
     
-    .greeting-container,
+    .company-greeting-container,
     .company-info-container,
     .history-container,
     .qualifications-container,
@@ -473,8 +422,8 @@
         padding: 0 20px;
     }
     
-    .greeting-heading {
-        font-size: 32px;
+    .company-greeting-heading {
+        font-size: 28px;
     }
     
     .qualification-subtitle {
@@ -604,25 +553,25 @@
 }
 
 .cta-contact {
-    background: linear-gradient(135deg, #379429 0%, #2d7a21 100%);
+    background: linear-gradient(135deg, #E70012 0%, #B30010 100%);
     color: #ffffff;
     border: 2px solid transparent;
 }
 
 .cta-contact:hover {
-    box-shadow: 0 8px 30px rgba(55, 148, 41, 0.4);
+    box-shadow: 0 8px 30px rgba(231, 0, 18, 0.4);
 }
 
 .cta-recruit {
     background: #ffffff;
     color: #333;
-    border: 2px solid #379429;
+    border: 2px solid #E70012;
 }
 
 .cta-recruit:hover {
-    background: #379429;
+    background: #E70012;
     color: #ffffff;
-    border-color: #379429;
+    border-color: #E70012;
 }
 
 .cta-icon {

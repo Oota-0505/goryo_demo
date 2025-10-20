@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>施工事例 - 五菱産業株式会社</title>
+    <title>施工事例 - 五料産業株式会社</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="work.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="work.css">
 </head>
 <body>
     <!-- Header -->
@@ -15,18 +16,28 @@
         <div class="header-content">
             <div class="logo">
                 <a href="index.html">
-                    <img src="images/logo.png" alt="五菱産業株式会社">
+                    <img src="img/logo_goryo.png" alt="五料産業株式会社">
                 </a>
             </div>
             <nav class="nav">
-                <div class="nav-right">
-                    <a href="company.html" class="nav-item">会社案内</a>
-                    <a href="work.html" class="nav-item">施工事例</a>
-                    <a href="business.html" class="nav-item">事業内容</a>
-                    <a href="index.html#recruit" class="nav-item">採用情報</a>
-                    <a href="index.html#faq" class="nav-item">よくある質問</a>
-                </div>
+                <a href="company.html" class="nav-item">会社案内</a>
+                <a href="work.html" class="nav-item">施工事例</a>
+                <a href="business.html" class="nav-item">事業内容</a>
+                <a href="index.html#recruit" class="nav-item">採用情報</a>
+                <a href="index.html#faq" class="nav-item">よくある質問</a>
             </nav>
+            <button class="hamburger">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="mobile-menu">
+                <a href="company.html" class="nav-item">会社案内</a>
+                <a href="work.html" class="nav-item">施工事例</a>
+                <a href="business.html" class="nav-item">事業内容</a>
+                <a href="index.html#recruit" class="nav-item">採用情報</a>
+                <a href="index.html#faq" class="nav-item">よくある質問</a>
+            </div>
         </div>
     </header>
 
@@ -47,12 +58,10 @@
                     <h2 class="filter-label">CATEGORY</h2>
                     <div class="filter-buttons">
                         <button class="filter-btn">全て</button>
-                        <button class="filter-btn">道路標識</button>
-                        <button class="filter-btn">道路表示</button>
-                        <button class="filter-btn">防護柵</button>
-                        <button class="filter-btn">カーブミラー</button>
-                        <button class="filter-btn">公共施設</button>
-                        <button class="filter-btn">その他</button>
+                        <button class="filter-btn">リフォーム</button>
+                        <button class="filter-btn">企業建築</button>
+                        <button class="filter-btn">住宅建築</button>
+                        <button class="filter-btn">土木外構</button>
                     </div>
                 </div>
             </div>
@@ -65,15 +74,32 @@
                 <article class="work-card">
                     <a href="#" class="work-link">
                         <div class="work-image">
-                            <img src="images/W1.jpg" alt="自転車専用通行帯工事">
+                            <img src="img/reform5-1.jpg" alt="Ｔ様アパート塗装塗り替え工事" class="work-image-main">
+                            <img src="img/reform5-2.jpg" alt="Ｔ様アパート塗装塗り替え工事（アフター）" class="work-image-hover">
                         </div>
                         <div class="work-content">
-                            <h3 class="work-title">自転車専用通行帯工事</h3>
-                            <p class="work-location">群馬県高崎市</p>
+                            <h3 class="work-title">Ｔ様アパート塗装塗り替え工事</h3>
+                            <p class="work-location">群馬県佐波郡玉村町</p>
                             <div class="work-tags">
-                                <span class="work-tag">道路標示</span>
+                                <span class="work-tag">リフォーム</span>
                             </div>
-                            <p class="work-description">高崎市内の主要道路において、自転車専用通行帯の路面標示工事を実施いたしました。青色の路面標示と自転車マークを正確に施工し、歩行者・自転車・自動車の安全な通行を実現しています。耐久性の高い塗料を使用し、長期間にわたり視認性を保持します。</p>
+                            <div class="work-details">
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">リフォーム箇所:</span>
+                                    <span class="work-detail-value">外壁</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工期:</span>
+                                    <span class="work-detail-value">15日</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">概算費用:</span>
+                                    <span class="work-detail-value">約200万円</span>
+                                </div>
+                            </div>
+                            <p class="work-description">直射日光や風雨を直接受ける外壁は、10年に一度の張り替え・塗り替えをご提案しています。
+                                施主様からのご依頼を受け、建築より約10年振りに外壁を塗装リフォームしました。
+                                </p>
                         </div>
                     </a>
                 </article>
@@ -82,15 +108,32 @@
                 <article class="work-card">
                     <a href="#" class="work-link">
                         <div class="work-image">
-                            <img src="images/W2.jpg" alt="道路標識">
+                            <img src="img/reform7-1.jpg" alt="玄関手すり・土間コンクリート工事" class="work-image-main">
+                            <img src="img/reform7-2.jpg" alt="玄関手すり・土間コンクリート工事（アフター）" class="work-image-hover">
+                            <div class="image-status before">BEFORE</div>
+                            <div class="image-status after">AFTER</div>
                         </div>
                         <div class="work-content">
-                            <h3 class="work-title">道路標識</h3>
-                            <p class="work-location">群馬県富岡市</p>
+                            <h3 class="work-title">玄関手すり・土間コンクリート工事</h3>
+                            <p class="work-location">群馬県伊勢崎市</p>
                             <div class="work-tags">
-                                <span class="work-tag">道路標識</span>
+                                <span class="work-tag">リフォーム</span>
                             </div>
-                            <p class="work-description">富岡市内の交差点において、道路標識の新設工事を行いました。視認性の高い位置に設置し、ドライバーの安全運転をサポートします。基礎工事から標識板の取り付けまで、確実な施工で長期間の使用に耐える品質を実現しています。</p>
+                            <div class="work-details">
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">リフォーム箇所:</span>
+                                    <span class="work-detail-value">庭</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工期:</span>
+                                    <span class="work-detail-value">2日間</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">概算費用:</span>
+                                    <span class="work-detail-value">約20万円</span>
+                                </div>
+                            </div>
+                            <p class="work-description">お体の不自由な施主様が、日頃無理なく玄関を行き来するために手すりを新設して土間コンクリートの施工をさせていただきました。バリアフリー対応により、安全で快適な生活環境を実現しています。</p>
                         </div>
                     </a>
                 </article>
@@ -99,15 +142,32 @@
                 <article class="work-card">
                     <a href="#" class="work-link">
                         <div class="work-image">
-                            <img src="images/W3.jpeg" alt="ガードレール">
+                            <img src="img/reform2-1.jpg" alt="ユニットバスリフォーム" class="work-image-main">
+                            <img src="img/reform2-2.jpg" alt="ユニットバスリフォーム（アフター）" class="work-image-hover">
+                            <div class="image-status before">BEFORE</div>
+                            <div class="image-status after">AFTER</div>
                         </div>
                         <div class="work-content">
-                            <h3 class="work-title">ガードレール</h3>
-                            <p class="work-location">群馬県前橋市</p>
+                            <h3 class="work-title">ユニットバスリフォーム</h3>
+                            <p class="work-location">群馬県伊勢崎市</p>
                             <div class="work-tags">
-                                <span class="work-tag">防護柵</span>
+                                <span class="work-tag">リフォーム</span>
                             </div>
-                            <p class="work-description">前橋市内の道路において、ガードレールの設置工事を実施しました。車両の逸脱を防ぎ、歩行者の安全を確保するため、強度と耐久性に優れた製品を使用しています。地形に合わせた正確な施工で、安全性と景観の両立を図っています。</p>
+                            <div class="work-details">
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">リフォーム箇所:</span>
+                                    <span class="work-detail-value">洗面台/洗濯機置き場</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工期:</span>
+                                    <span class="work-detail-value">3日間</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">概算費用:</span>
+                                    <span class="work-detail-value">約200万円</span>
+                                </div>
+                            </div>
+                            <p class="work-description">古くなったお風呂場をユニット式のバスルームにリフォームしました。モダンで清潔感のある空間に生まれ変わり、快適な入浴環境を実現しています。バリアフリー対応の手すりも設置し、安全性も向上させました。</p>
                         </div>
                     </a>
                 </article>
@@ -116,15 +176,32 @@
                 <article class="work-card">
                     <a href="#" class="work-link">
                         <div class="work-image">
-                            <img src="images/W4.jpeg" alt="カーブミラー">
+                            <img src="img/reform9-1.jpg" alt="工場・倉庫建設" class="work-image-main">
+                            <img src="img/reform9-2.jpg" alt="工場・倉庫建設（アフター）" class="work-image-hover">
+                            <div class="image-status after">AFTER</div>
+                            <div class="image-status before">BEFORE</div>
                         </div>
                         <div class="work-content">
-                            <h3 class="work-title">カーブミラー</h3>
-                            <p class="work-location">群馬県前橋市</p>
+                            <h3 class="work-title">T社様工場外壁張替工事</h3>
+                            <p class="work-location">群馬県佐波郡玉村町</p>
                             <div class="work-tags">
-                                <span class="work-tag">カーブミラー</span>
+                                <span class="work-tag">企業建築</span>
                             </div>
-                            <p class="work-description">前橋市内の見通しの悪い交差点に、カーブミラーを設置しました。適切な角度と高さに調整し、ドライバーの視界を確保することで、交通事故の防止に貢献しています。定期的なメンテナンスにも対応し、常に最適な状態を保ちます。</p>
+                            <div class="work-details">
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工事箇所:</span>
+                                    <span class="work-detail-value">外壁</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工期:</span>
+                                    <span class="work-detail-value">約15日</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">概算費用:</span>
+                                    <span class="work-detail-value">約300万円</span>
+                                </div>
+                            </div>
+                            <p class="work-description">場の経年劣化により屋根および外壁を張りなおしたいという施主様の依頼を受けて、スレートから角波鉄板の外壁を張り替えさせていただきました。耐久性と美観を向上させ、建物の長期的な維持管理をサポートいたします。</p>
                         </div>
                     </a>
                 </article>
@@ -133,15 +210,30 @@
                 <article class="work-card">
                     <a href="#" class="work-link">
                         <div class="work-image">
-                            <img src="images/W5.jpeg" alt="手すり">
+                            <img src="img/reform8-1.jpg" alt="映画館スクリーン増設工事" class="work-image-main">
+                            <img src="img/reform8-1.jpg" alt="映画館スクリーン増設工事" class="work-image-hover">
                         </div>
                         <div class="work-content">
-                            <h3 class="work-title">手すり</h3>
+                            <h3 class="work-title">映画館スクリーン増設工事</h3>
                             <p class="work-location">群馬県高崎市</p>
                             <div class="work-tags">
-                                <span class="work-tag">その他</span>
+                                <span class="work-tag">企業建築</span>
                             </div>
-                            <p class="work-description">高崎市内の公共施設において、階段手すりの設置工事を行いました。高齢者や身体の不自由な方でも安心して利用できるよう、適切な高さと握りやすさを考慮した設計で施工しています。耐久性に優れた素材を使用し、長期間の使用にも対応します。</p>
+                            <div class="work-details">
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工事箇所:</span>
+                                    <span class="work-detail-value">映画館内装</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工期:</span>
+                                    <span class="work-detail-value">3ヵ月</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">概算費用:</span>
+                                    <span class="work-detail-value">約5,000万円</span>
+                                </div>
+                            </div>
+                            <p class="work-description">映画館支配人からの依頼で、上映スクリーンの増設に伴う館内全面改装工事を実施いたしました。映画館の工事は初めてであり、営業外の夜間工事もあって大変でしたが、設計図に基づいて工事を完成させました。お客様に快適な映画鑑賞環境を提供できるよう、細心の注意を払って施工いたしました。</p>
                         </div>
                     </a>
                 </article>
@@ -150,69 +242,132 @@
                 <article class="work-card">
                     <a href="#" class="work-link">
                         <div class="work-image">
-                            <img src="images/W6.jpeg" alt="フェンス">
+                            <img src="img/reform6-1.jpg" alt="Y様住宅新築工事" class="work-image-main">
+                            <img src="img/reform6-2.jpg" alt="Y様住宅新築工事（アフター）" class="work-image-hover">
+                            <!-- <div class="image-status after">AFTER</div>
+                            <div class="image-status before">BEFORE</div> -->
                         </div>
                         <div class="work-content">
-                            <h3 class="work-title">フェンス</h3>
-                            <p class="work-location">群馬県高崎市</p>
+                            <h3 class="work-title">Y様住宅新築工事</h3>
+                            <p class="work-location">群馬県前橋市</p>
                             <div class="work-tags">
-                                <span class="work-tag">その他</span>
+                                <span class="work-tag">住宅建築</span>
                             </div>
-                            <p class="work-description">高崎市内の施設において、フェンスの設置工事を実施しました。敷地の境界を明確にし、防犯性を高めるとともに、景観にも配慮したデザインを採用しています。強度と耐久性に優れた製品を使用し、長期間にわたり安全を確保します。</p>
+                            <div class="work-details">
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工事箇所:</span>
+                                    <span class="work-detail-value">一戸建て</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工期:</span>
+                                    <span class="work-detail-value">約4か月</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">概算費用:</span>
+                                    <span class="work-detail-value">約1,700万円</span>
+                                </div>
+                            </div>
+                            <p class="work-description">火事で焼けてしまったご自宅を復旧したいという施主様の依頼により、家のデザインは焼失前と同じでよいとのことでしたが、間取りは日当たりを良くしたいことを考えて２階にメインの居間を設定しました。お客様のご要望に応え、快適な住環境を実現いたしました。</p>
                         </div>
                     </a>
                 </article>
 
                 <!-- Work Item 7 -->
-                <!-- <article class="work-card">
+                <article class="work-card">
                     <a href="#" class="work-link">
                         <div class="work-image">
-                            <img src="images/work_07.png" alt="【戸建・新築】自然が息づく庭 〜ビオトープのある暮らし〜">
+                            <img src="img/kenchiku-1.jpg" alt="S様住宅（別荘）新築工事" class="work-image-main">
+                            <img src="img/kenchiku-1.jpg" alt="S様住宅（別荘）新築工事" class="work-image-hover">
                         </div>
                         <div class="work-content">
-                            <h3 class="work-title">【戸建・新築】自然が息づく庭 〜ビオトープのある暮らし〜</h3>
-                            <p class="work-location">群馬県</p>
+                            <h3 class="work-title">S様住宅（別荘）新築工事</h3>
+                            <p class="work-location">群馬県高崎市</p>
                             <div class="work-tags">
-                                <span class="work-tag">新築ガーデン</span>
+                                <span class="work-tag">住宅建築</span>
                             </div>
-                            <p class="work-description">【受賞】第2回あんなか景観まちづくり賞にて、優秀賞を受賞しました！
-ビオトープの庭は、生きものたちが自然に集い、共生する空間です。水辺にトンボが飛び交い、小鳥がさえずり、季節ごとに変化する植物が彩りを添えます。「自然を身近に感じられる庭にしたい」「四季の移ろいを楽しみたい」そんな願いを叶えるビオトープの庭づくりも、私たちがお手伝いします。</p>
+                            <div class="work-details">
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工事箇所:</span>
+                                    <span class="work-detail-value">別荘</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工期:</span>
+                                    <span class="work-detail-value">約3か月</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">概算費用:</span>
+                                    <span class="work-detail-value">約1,000万円</span>
+                                </div>
+                            </div>
+                            <p class="work-description">平成20年に施主様の依頼により、自宅の離れに別荘を新築させていただきました。内部には薪ストーブを設置して、外観は施主様の好みを反映させたナチュラルテイストの別荘を施工させていただきました。自然と調和した快適な空間を実現いたしました。</p>
                         </div>
                     </a>
-                </article> -->
+                </article>
 
                 <!-- Work Item 8 -->
                 <article class="work-card">
                     <a href="#" class="work-link">
                         <div class="work-image">
-                            <img src="images/work_08.png" alt="【戸建リフォーム】　50本超の樹木を伐根！　お庭の劇的ビフォーアフター！">
+                            <img src="img/doboku-5-1.jpg" alt="K様邸外構工事" class="work-image-main">
+                            <img src="img/doboku-5-2.jpg" alt="K様邸外構工事（アフター）" class="work-image-hover">
+                            <!-- <div class="image-status after">AFTER</div>
+                            <div class="image-status before">BEFORE</div> -->
                         </div>
                         <div class="work-content">
-                            <h3 class="work-title">【戸建リフォーム】　50本超の樹木を伐根！　ビフォーアフター！</h3>
-                            <p class="work-location">群馬県高崎市</p>
+                            <h3 class="work-title">K様邸外構工事</h3>
+                            <p class="work-location">群馬県前橋市</p>
                             <div class="work-tags">
-                                <span class="work-tag">その他</span>
+                                <span class="work-tag">土木外構</span>
                             </div>
-                            <p class="work-description">荒れ果てたお庭を、美しく使いやすい空間へと生まれ変わらせました。50本以上の樹木を伐根し、雑草を一掃。その後、お客様のご要望に合わせて、新たな植栽と舗装を施工しました。</p>
+                            <div class="work-details">
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工事箇所:</span>
+                                    <span class="work-detail-value">外構</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工期:</span>
+                                    <span class="work-detail-value">約2か月</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">概算費用:</span>
+                                    <span class="work-detail-value">約250万円</span>
+                                </div>
+                            </div>
+                            <p class="work-description">施主様より新築住宅に付随した外構工事の施工を依頼されました。奥行きのある敷地であるため駐車場土間コンクリート工事のボリュームがありました。そのほかにカーポート、玄関門扉、アプローチの施工をさせていただきました。機能性と美観を兼ね備えた外構空間を実現いたしました。</p>
                         </div>
                     </a>
                 </article>
 
                 <!-- Work Item 9 -->
-
-                <!-- Work Item 10 -->
                 <article class="work-card">
                     <a href="#" class="work-link">
                         <div class="work-image">
-                            <img src="images/work_10.png" alt="【企業・ヘアサロン】ヘアサロンのファサード植栽とアフターメンテナンス">
+                            <img src="img/doboku6-1.jpg" alt="T様邸カラー舗装工事" class="work-image-main">
+                            <img src="img/doboku6-2.jpg" alt="T様邸カラー舗装工事（アフター）" class="work-image-hover">
+                            <div class="image-status after">AFTER</div>
+                            <div class="image-status before">BEFORE</div>
                         </div>
                         <div class="work-content">
-                            <h3 class="work-title">ヘアサロンのファサード植栽とアフターメンテナンス</h3>
-                            <p class="work-location">群馬県高崎市</p>
+                            <h3 class="work-title">T様邸カラー舗装工事</h3>
+                            <p class="work-location">群馬県佐波郡玉村町</p>
                             <div class="work-tags">
-                                <span class="work-tag">その他</span>
+                                <span class="work-tag">土木外構</span>
                             </div>
-                            <p class="work-description">高崎市内のヘアサロン様のファサードに植栽させていただきました。設計（植物の選定等）から施工（植栽作業）はもちろん、引き渡し後のアフターメンテナンス（剪定作業）も一貫して当社におまかせください。</p>
+                            <div class="work-details">
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工事箇所:</span>
+                                    <span class="work-detail-value">カラー舗装</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">工期:</span>
+                                    <span class="work-detail-value">5日</span>
+                                </div>
+                                <div class="work-detail-item">
+                                    <span class="work-detail-label">概算費用:</span>
+                                    <span class="work-detail-value">約100万円</span>
+                                </div>
+                            </div>
+                            <p class="work-description">庭に雑草が生えないようにどうにかしてほしいという施主様の要望がありました。全面コンクリート仕上げでは味気ない庭になってしまうので、一部分を緑色のゴムチップを張り、その周りを緑色の「カラー舗装」で施工してはどうかと提案させていただきました。結果そのように仕上げて、施主様に満足していただきました。</p>
                         </div>
                     </a>
                 </article>
@@ -235,13 +390,14 @@
         <div class="footer-content">
             <div class="footer-left">
                 <div class="footer-logo">
-                    <img src="images/logo.png" alt="五菱産業株式会社">
+                    <img src="img/logo_goryo.png" alt="五料産業株式会社">
                 </div>
                 <div class="footer-company">
-                    <p class="footer-company-name">五菱産業株式会社</p>
-                    <p class="footer-address">〒379-2117 群馬県前橋市二之宮町572番地2</p>
+                    <p class="footer-address">群馬県佐波郡玉村町下新田563番地</p>
                 </div>
-                <p class="footer-contact">TEL. 027-268-1700 / FAX. 027-268-3192</p>
+                <p class="footer-contact">TEL. 0270-65-2137 / FAX. 0270-65-9910</p>
+                
+                <!-- 対応エリア情報 -->
                 <div class="footer-area">
                     <h3 class="footer-area-title">対応エリア</h3>
                     <div class="footer-area-content">
@@ -263,7 +419,7 @@
             <div class="footer-right">
                 <div class="footer-map">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3230.1234567890!2d139.1234567890!3d36.1234567890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzYuMTIzNDU2Nzg5LDEzOS4xMjM0NTY3ODk!5e0!3m2!1sja!2sjp!4v1234567890123!5m2!1sja!2sjp&q=群馬県前橋市二之宮町572番地2"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d25722.988828147685!2d139.118736!3d36.303246!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601eec0196b7b73d%3A0x6400afbcf836ea3e!2z5LqU5paZ55Sj5qWt77yI5qCq77yJ!5e0!3m2!1sja!2sus!4v1760701046504!5m2!1sja!2sus"
                         width="100%" 
                         height="400" 
                         style="border:0;" 

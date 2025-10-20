@@ -8,21 +8,15 @@ function initHeroSlider() {
     heroSlides = document.querySelectorAll('.hero-slide');
     totalSlides = heroSlides.length;
     
-        if (totalSlides > 0) {
-            showSlide(0);
-            // アニメーション完了後に次のスライドに切り替え
-            setTimeout(() => {
-                heroSliderInterval = setInterval(nextSlide, 4000);
-            }, 4000);
-        }
+    if (totalSlides > 0) {
+        showSlide(0);
+        heroSliderInterval = setInterval(nextSlide, 4000);
+    }
 }
 
 function showSlide(index) {
     heroSlides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) {
-            slide.classList.add('active');
-        }
+        slide.classList.toggle('active', i === index);
     });
 }
 
@@ -30,25 +24,184 @@ function nextSlide() {
     if (totalSlides > 0) {
         currentSlide = (currentSlide + 1) % totalSlides;
         showSlide(currentSlide);
-        
-        // アニメーションをリセット
-        const currentImg = heroSlides[currentSlide].querySelector('img');
-        if (currentImg) {
-            currentImg.style.animation = 'none';
-            currentImg.offsetHeight; // リフローを強制
-            // 少し遅延してアニメーション開始
-            setTimeout(() => {
-                currentImg.style.animation = 'zoomIn 4s ease-in-out';
-            }, 100);
-        }
     }
 }
 
-function prevSlide() {
-    if (totalSlides > 0) {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        showSlide(currentSlide);
+// Hamburger Menu
+function initHamburgerMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (hamburger && mobileMenu) {
+        // ハンバーガーボタンクリック
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // メニューアイテムクリック時に閉じる
+        const navItems = mobileMenu.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // メニュー外クリックで閉じる
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
     }
+}
+
+// Flow Section Step Animation
+function initFlowSteps() {
+    const steps = document.querySelectorAll('.flow-step');
+    const images = document.querySelectorAll('.flow-image');
+    let currentStep = 0;
+    let autoPlayInterval;
+    let isAnimationStarted = false;
+    const INTERVAL_TIME = 4000; // 4秒間隔で統一
+
+    function setActiveStep(index) {
+        // 有効なインデックスかチェック
+        if (index < 0 || index >= steps.length) return;
+        
+        // すべてのステップを非アクティブに
+        steps.forEach((step, i) => {
+            step.classList.remove('active', 'completed');
+            if (i < index) {
+                step.classList.add('completed');
+            } else if (i === index) {
+                step.classList.add('active');
+            }
+        });
+
+        // すべての画像を非アクティブに
+        images.forEach((image) => {
+            image.classList.remove('active');
+        });
+        
+        // アクティブな画像を設定（遅延なしで統一）
+        if (images[index]) {
+            images[index].classList.add('active');
+        }
+
+        currentStep = index;
+    }
+
+    function nextStep() {
+        const nextIndex = (currentStep + 1) % steps.length;
+        setActiveStep(nextIndex);
+    }
+
+    function startAutoPlay() {
+        if (!isAnimationStarted) return;
+        autoPlayInterval = setInterval(nextStep, INTERVAL_TIME);
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+        }
+    }
+
+    function startAnimation() {
+        if (isAnimationStarted) return;
+        isAnimationStarted = true;
+        
+        // 初期状態を設定
+        setActiveStep(0);
+        
+        // 自動再生開始
+        startAutoPlay();
+    }
+
+    // ステップクリックイベント
+    steps.forEach((step, index) => {
+        step.addEventListener('click', () => {
+            if (!isAnimationStarted) return;
+            stopAutoPlay();
+            setActiveStep(index);
+            // 4秒後に自動再生再開（統一）
+            setTimeout(startAutoPlay, INTERVAL_TIME);
+        });
+    });
+
+    // マウスホバーで自動再生を停止/再開
+    const container = document.querySelector('.flow-steps-container');
+    if (container) {
+        container.addEventListener('mouseenter', () => {
+            if (!isAnimationStarted) return;
+            stopAutoPlay();
+        });
+        container.addEventListener('mouseleave', () => {
+            if (!isAnimationStarted) return;
+            // 1秒後に自動再生再開（統一）
+            setTimeout(startAutoPlay, 1000);
+        });
+    }
+
+    // Intersection Observerでエリアに入ったらアニメーション開始
+    const flowSection = document.querySelector('.flow-section');
+    if (flowSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 0.5秒後にアニメーション開始（統一）
+                    setTimeout(startAnimation, 500);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        });
+        
+        observer.observe(flowSection);
+    }
+}
+
+// Parallax Effect
+function initParallax() {
+    const parallaxElements = document.querySelectorAll('.parallax-bg, .hero-slide img');
+    let ticking = false;
+
+    function updateParallax() {
+        const scrollTop = window.pageYOffset;
+        
+        parallaxElements.forEach(element => {
+            const speed = element.classList.contains('parallax-slow') ? 0.5 :
+                         element.classList.contains('parallax-medium') ? 0.3 :
+                         element.classList.contains('parallax-fast') ? 0.1 : 0.2;
+            
+            const yPos = -(scrollTop * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+
+        // Hero images parallax
+        const heroImages = document.querySelectorAll('.hero-slide img');
+        heroImages.forEach(img => {
+            const yPos = -(scrollTop * 0.2);
+            img.style.transform = `translateY(${yPos}px) scale(1.05)`;
+        });
+
+        ticking = false;
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', requestTick, { passive: true });
 }
 
 // Initialize slider when page loads
@@ -56,6 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroSlider();
     initHeaderScroll();
     initFloatingCTA();
+    initHamburgerMenu();
+    initFlowSteps();
+    initParallax();
 });
 
 // Header scroll effect
@@ -106,7 +262,7 @@ if (heroSection) {
     
     heroSection.addEventListener('mouseleave', () => {
         if (totalSlides > 0) {
-            heroSliderInterval = setInterval(nextSlide, 5000);
+            heroSliderInterval = setInterval(nextSlide, 4000);
         }
     });
 }
@@ -152,49 +308,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// Fade-in animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Apply animation to sections
-document.querySelectorAll('.section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(30px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(section);
-});
-
-// Lazy load images
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                }
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
 
 // Window resize handler for voice slider
 let resizeTimer;
