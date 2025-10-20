@@ -740,7 +740,8 @@ img {
     border-radius: 8px;
     overflow: hidden;
     display: flex;
-    background: var(--background-light);
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .greeting-content {
@@ -759,7 +760,6 @@ img {
     justify-content: center;
     position: relative;
     height: 100%;
-    background: var(--background-light);
     padding: 20px;
 }
 
@@ -771,7 +771,7 @@ img {
     object-fit: contain;
     object-position: center;
     border-radius: 8px;
-    background: #f8f9fa;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .greeting-right {
