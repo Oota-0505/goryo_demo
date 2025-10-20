@@ -58,7 +58,7 @@
 
 .company-greeting-header-wrapper {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 0px;
 }
 
 .company-greeting-section .section-header {
@@ -139,7 +139,7 @@
     position: relative;
 }
 
-.company-table tbody tr:first-child th::before {
+/* .company-table tbody tr:first-child th::before {
     content: '';
     position: absolute;
     top: 0;
@@ -147,7 +147,7 @@
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #E70012, transparent);
-}
+} */
 
 .company-table tbody tr {
     border-bottom: 1px solid #E0E0E0;
@@ -180,7 +180,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #E70012, transparent);
+    background: transparent;
 }
 
 .company-table td {

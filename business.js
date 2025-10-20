@@ -181,28 +181,24 @@ function initHamburgerMenu() {
     }
 }
 
-// Accordion functionality
-function initAccordion() {
-    const accordionItems = document.querySelectorAll('.accordion-item');
+// Tabs functionality
+function initTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
     
-    accordionItems.forEach(item => {
-        const header = item.querySelector('.accordion-header');
-        
-        header.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
             
-            // Close all other accordion items
-            accordionItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
-            });
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
             
-            // Toggle current item
-            if (isActive) {
-                item.classList.remove('active');
-            } else {
-                item.classList.add('active');
+            // Add active class to clicked button and corresponding content
+            button.classList.add('active');
+            const targetContent = document.getElementById(tabId);
+            if (targetContent) {
+                targetContent.classList.add('active');
             }
         });
     });
@@ -218,6 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initAwardsTableEffects();
     initTextRevealAnimations();
     initHamburgerMenu();
-    initAccordion();
+    initTabs();
 });
 
