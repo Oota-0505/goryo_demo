@@ -2,6 +2,12 @@
 // 完全独立版（他のデザイン案と干渉しない）
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Header scroll effect
+    initHeaderScroll();
+    
+    // Hamburger Menu
+    initHamburgerMenu();
+    
     // Hero Slider
     initHeroSlider();
     
@@ -11,12 +17,53 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll Animations
     initScrollAnimations();
     
-    // Hamburger Menu
-    initHamburgerMenu();
-    
     // Flow Slider
     initFlowSlider();
 });
+
+// Header Scroll Effect
+function initHeaderScroll() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+}
+
+// Hamburger Menu
+function initHamburgerMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (!hamburger || !mobileMenu) return;
+    
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        }
+    });
+    
+    // Close menu when clicking on a link
+    const navItems = mobileMenu.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+    });
+}
 
 // Hero Slider
 function initHeroSlider() {
@@ -55,7 +102,7 @@ function initContactBar() {
     });
     
     // Show contact bar when near footer
-    const footer = document.querySelector('.v4-footer-main');
+    const footer = document.querySelector('.footer');
     if (footer) {
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
@@ -73,7 +120,7 @@ function initContactBar() {
 
 // Scroll Animations
 function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.v4-fade-in, .v4-fade-in-left, .v4-fade-in-right, .v4-zoom-in');
+    const animatedElements = document.querySelectorAll('.v4-fade-in, .v4-fade-in-left, .v4-fade-in-right, .v4-zoom-in, .v4-about-image, .v4-about-content');
     
     if (animatedElements.length === 0) return;
     
@@ -92,36 +139,6 @@ function initScrollAnimations() {
     
     animatedElements.forEach(function(element) {
         observer.observe(element);
-    });
-}
-
-// Hamburger Menu
-function initHamburgerMenu() {
-    const hamburger = document.querySelector('.v4-hamburger');
-    const navMenu = document.querySelector('.v4-nav-menu');
-    
-    if (!hamburger || !navMenu) return;
-    
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-    
-    // Close menu when clicking on a nav item
-    const navItems = document.querySelectorAll('.v4-nav-item');
-    navItems.forEach(function(item) {
-        item.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
     });
 }
 
@@ -147,7 +164,12 @@ function initFlowSlider() {
     // Update slider position and states
     function updateSlider() {
         // Calculate center position
-        const containerWidth = slider.parentElement.offsetWidth;
+        // Use clientWidth (excluding padding) for accurate container width
+        const wrapper = slider.parentElement;
+        const wrapperStyle = window.getComputedStyle(wrapper);
+        const paddingLeft = parseInt(wrapperStyle.paddingLeft) || 0;
+        const paddingRight = parseInt(wrapperStyle.paddingRight) || 0;
+        const containerWidth = wrapper.clientWidth - paddingLeft - paddingRight;
         const totalSlideWidth = SLIDE_WIDTH + GAP;
         const centerOffset = (containerWidth / 2) - (SLIDE_WIDTH / 2);
         const slideOffset = currentIndex * totalSlideWidth;
@@ -233,6 +255,13 @@ function initFlowSlider() {
     // Pause on hover
     slider.addEventListener('mouseenter', stopAutoSlide);
     slider.addEventListener('mouseleave', startAutoSlide);
+    
+    // Resize handler
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateSlider, 100);
+    });
     
     // Initialize
     console.log(`Initializing flow slider with ${slides.length} slides`);

@@ -5,42 +5,56 @@ class WorkPage {
     }
 
     init() {
-        this.initFloatingCTA();
+        this.initHeaderScroll();
+        this.initContactBar();
         this.initScrollAnimations();
         this.initHamburgerMenu();
     }
 
-    // Floating CTA scroll effect
-    initFloatingCTA() {
-        const floatingCTA = document.querySelector('.floating-cta');
-        if (!floatingCTA) return;
-
-        const showThreshold = 300;
-        let isVisible = false;
-
-        const handleScroll = () => {
-            const scrollTop = window.pageYOffset;
-            const shouldShow = scrollTop > showThreshold;
-
-            if (shouldShow !== isVisible) {
-                isVisible = shouldShow;
-                floatingCTA.classList.toggle('visible', isVisible);
+    // Header scroll effect
+    initHeaderScroll() {
+        const header = document.querySelector('.header');
+        if (!header) return;
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
-        };
+        });
+    }
 
-        // Throttle scroll events for better performance
-        let ticking = false;
-        const throttledScroll = () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    handleScroll();
-                    ticking = false;
+    // Contact Bar
+    initContactBar() {
+        const contactBar = document.querySelector('.v4-contact-bar');
+        
+        if (!contactBar) return;
+        
+        // Show contact bar after scrolling
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 500) {
+                contactBar.classList.add('v4-visible');
+            } else {
+                contactBar.classList.remove('v4-visible');
+            }
+        });
+        
+        // Show contact bar when near footer
+        const footer = document.querySelector('.footer');
+        if (footer) {
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        contactBar.classList.add('v4-visible');
+                    }
                 });
-                ticking = true;
-            }
-        };
-
-        window.addEventListener('scroll', throttledScroll, { passive: true });
+            }, {
+                threshold: 0.1
+            });
+            
+            observer.observe(footer);
+        }
     }
 
     // Scroll animations

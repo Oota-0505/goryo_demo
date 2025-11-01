@@ -1,5 +1,39 @@
+// Contact Bar
+function initContactBar() {
+    const contactBar = document.querySelector('.v4-contact-bar');
+    
+    if (!contactBar) return;
+    
+    // Show contact bar after scrolling
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 500) {
+            contactBar.classList.add('v4-visible');
+        } else {
+            contactBar.classList.remove('v4-visible');
+        }
+    });
+    
+    // Show contact bar when near footer
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    contactBar.classList.add('v4-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        observer.observe(footer);
+    }
+}
+
 // Contact Form Handler
 document.addEventListener('DOMContentLoaded', () => {
+    initContactBar();
+    
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
 

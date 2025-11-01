@@ -44,9 +44,7 @@ function initHeaderScrollEffect() {
     
     if (header) {
         window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            
-            if (scrollTop > 100) {
+            if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
@@ -55,21 +53,35 @@ function initHeaderScrollEffect() {
     }
 }
 
-// Floating CTA scroll effect
-function initFloatingCTA() {
-    const floatingCTA = document.querySelector('.floating-cta');
+// Contact Bar
+function initContactBar() {
+    const contactBar = document.querySelector('.v4-contact-bar');
     
-    if (floatingCTA) {
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            const showThreshold = 500;
-            
-            if (scrollTop > showThreshold) {
-                floatingCTA.classList.add('visible');
-            } else {
-                floatingCTA.classList.remove('visible');
-            }
+    if (!contactBar) return;
+    
+    // Show contact bar after scrolling
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 500) {
+            contactBar.classList.add('v4-visible');
+        } else {
+            contactBar.classList.remove('v4-visible');
+        }
+    });
+    
+    // Show contact bar when near footer
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    contactBar.classList.add('v4-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
         });
+        
+        observer.observe(footer);
     }
 }
 
@@ -208,7 +220,7 @@ function initTabs() {
 document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initHeaderScrollEffect();
-    initFloatingCTA();
+    initContactBar();
     initServiceItemEffects();
     initPromiseItemEffects();
     initAwardsTableEffects();
@@ -216,4 +228,3 @@ document.addEventListener('DOMContentLoaded', () => {
     initHamburgerMenu();
     initTabs();
 });
-

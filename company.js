@@ -25,7 +25,7 @@ function initHeaderScroll() {
     
     if (header) {
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
@@ -79,11 +79,44 @@ function initHamburgerMenu() {
     }
 }
 
+// Contact Bar
+function initContactBar() {
+    const contactBar = document.querySelector('.v4-contact-bar');
+    
+    if (!contactBar) return;
+    
+    // Show contact bar after scrolling
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 500) {
+            contactBar.classList.add('v4-visible');
+        } else {
+            contactBar.classList.remove('v4-visible');
+        }
+    });
+    
+    // Show contact bar when near footer
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    contactBar.classList.add('v4-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        observer.observe(footer);
+    }
+}
+
 // Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initHeaderScroll();
     initSmoothScroll();
     initHamburgerMenu();
+    initContactBar();
 });
 

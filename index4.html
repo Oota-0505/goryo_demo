@@ -11,30 +11,30 @@
 </head>
 <body class="v4-body">
     <!-- Header -->
-    <header class="v4-header">
-        <div class="v4-header-content">
-            <div class="v4-header-left">
-                <div class="v4-logo">
-                    <a href="index4.html">
-                        <img src="img/logo_goryo.png" alt="五料産業株式会社">
-                    </a>
-                </div>
-              
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index4.html">
+                    <img src="img/logo_goryo.png" alt="五料産業株式会社">
+                </a>
             </div>
-            <nav class="v4-nav">
-                <div class="v4-nav-menu">
-                    <a href="business.html" class="v4-nav-item">事業内容</a>
-                    <a href="work.html" class="v4-nav-item">施工事例</a>
-                    <a href="company.html" class="v4-nav-item">会社概要</a>
-                    <a href="recruit.html" class="v4-nav-item">採用情報</a>
-                    <a href="index.html" class="v4-nav-item">デザイン1</a>
-                </div>
-                <button class="v4-hamburger" aria-label="メニューを開く">
-                    <span class="v4-hamburger-line"></span>
-                    <span class="v4-hamburger-line"></span>
-                    <span class="v4-hamburger-line"></span>
-                </button>
+            <nav class="nav">
+                <a href="company.html" class="nav-item">会社案内</a>
+                <a href="work.html" class="nav-item">施工事例</a>
+                <a href="business.html" class="nav-item">事業案内</a>
+                <a href="recruit.html" class="nav-item">採用情報</a>
             </nav>
+            <button class="hamburger">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="mobile-menu">
+                <a href="company.html" class="nav-item">会社案内</a>
+                <a href="work.html" class="nav-item">施工事例</a>
+                <a href="business.html" class="nav-item">事業案内</a>
+                <a href="recruit.html" class="nav-item">採用情報</a>
+            </div>
         </div>
     </header>
 
@@ -73,7 +73,7 @@
     <section class="v4-about-section">
         <div class="v4-about-container">
             <div class="v4-about-image v4-fade-in-left">
-                <img src="images/W6.jpeg" alt="五料産業の想い">
+                <img src="img/comp.jpg" alt="五料産業の想い">
             </div>
             <div class="v4-about-content v4-fade-in-right">
                 <div class="v4-section-header">
@@ -81,13 +81,25 @@
                     <h2 class="v4-section-title">五料産業の想い</h2>
                     <div class="v4-section-divider"></div>
                 </div>
-                <div class="v4-about-text">
-                    <p>五料産業株式会社は、昭和37年の創業以来、群馬県を拠点として「リフォーム」「建築」「土木・外構」の3つの事業を柱に、地域の皆様の生活と事業を支える総合建設業者として歩み続けています。</p>
-                    <p class="v4-highlight">まちの未来を、確かな技術で。</p>
-                    <p>豊富な実績と確かな技術力で、あらゆる建設ニーズにお応えし、これからも地域とともに成長を続けてまいります。</p>
+
+                <!-- About Text -->
+                <div class="v4-about-text-wrapper">
+                    <p class="v4-text-main">五料産業株式会社は、昭和37年の創業以来、群馬県を拠点として「リフォーム」「建築」「土木・外構」の3つの事業を柱に、地域の皆様の生活と事業を支える総合建設業者として歩み続けています。</p>
+                    
+                    <div class="v4-highlight-box">
+                        <div class="v4-highlight-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L15.09 8.26H22L17.54 12.88L19.63 19.24L12 14.62L4.37 19.24L6.46 12.88L2 8.26H8.91L12 2Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <p class="v4-highlight">まちの未来を、確かな技術で。</p>
+                    </div>
+
+                    <p class="v4-text-main">豊富な実績と確かな技術力で、あらゆる建設ニーズにお応えし、これからも地域とともに成長を続けてまいります。</p>
                 </div>
+                
                 <div class="v4-about-image-bottom">
-                    <img src="images/design4_about2-34ee9d.png" alt="五料産業の取り組み">
+                    <img src="img/top_daihyo.jpg" alt="五料産業の取り組み">
                 </div>
             </div>
         </div>
@@ -167,7 +179,7 @@
                 </div>
 
                 <!-- Strength Item 4 -->
-                <div class="v4-strength-card v4-reverse">
+                <div class="v4-strength-card v4-reverse v4-fade-in v4-delay-3">
                     <div class="v4-strength-image">
                         <img src="images/design4_strength4-3b3199.png" alt="安全に対する意識の徹底">
                     </div>
@@ -187,7 +199,7 @@
                 </div>
 
                 <!-- Strength Item 5 -->
-                <div class="v4-strength-card">
+                <div class="v4-strength-card v4-fade-in v4-delay-4">
                     <div class="v4-strength-image">
                         <img src="images/design4_strength5-3b3199.png" alt="品質維持と環境保全の取り組み">
                     </div>
@@ -328,7 +340,7 @@
                             <h3 class="v4-flow-slide-title">詳細打ち合わせ・ご契約</h3>
                         </div>
                         <div class="v4-flow-image">
-                            <img src="images/work_01.png" alt="詳細打ち合わせ・ご契約">
+                            <img src="img/F0.png" alt="詳細打ち合わせ・ご契約">
                         </div>
                         <div class="v4-flow-slide-content">
                             <p class="v4-flow-slide-text">仕様や工期、費用などの詳細を最終確認し、ご契約を締結します。着工までの準備や日程調整もこの段階で行います。</p>
@@ -356,7 +368,7 @@
                             <h3 class="v4-flow-slide-title">完成・お引き渡し</h3>
                         </div>
                         <div class="v4-flow-image">
-                            <img src="images/work_01.png" alt="完成・お引き渡し">
+                            <img src="img/F1.png" alt="完成・お引き渡し">
                         </div>
                         <div class="v4-flow-slide-content">
                             <p class="v4-flow-slide-text">施工完了後、品質確認と最終チェックを行い、お客様にお引き渡しいたします。その後も、メンテナンスやアフターサポートで長期的にサポートいたします。</p>
@@ -410,92 +422,96 @@
     </section>
 
     <!-- Footer -->
-    <footer class="v4-footer">
-        <div class="v4-footer-main">
-            <div class="v4-footer-container">
-                <div class="v4-footer-column">
-                    <div class="v4-footer-logo">
-                        <img src="img/logo_goryo.png" alt="五料産業株式会社">
-                    </div>
-                    <div class="v4-footer-company">
-                        <p class="v4-footer-address">群馬県佐波郡玉村町下新田563番地</p>
-                        <p class="v4-footer-contact">TEL. 0270-65-2137 / FAX. 0270-65-9910</p>
-                    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <img src="img/logo_goryo.png" alt="五料産業株式会社">
                 </div>
+                <div class="footer-company">
+                    <p class="footer-address">群馬県佐波郡玉村町下新田563番地</p>
+                </div>
+                <p class="footer-contact">TEL. 0270-65-2137 / FAX. 0270-65-9910</p>
                 
-                <div class="v4-footer-column">
-                    <h3 class="v4-footer-title">対応エリア</h3>
-                    <p class="v4-footer-text">
-                        【群馬県】前橋市、高崎市、太田市、伊勢崎市、渋川市、桐生市、みどり市、館林市、邑楽郡、安中市、藤岡市等<br>
-                        【埼玉県】本庄市、深谷市<br>
-                        【栃木県】佐野市、足利市
-                    </p>
-                </div>
-                
-                <div class="v4-footer-column">
-                    <h3 class="v4-footer-title">サイトマップ</h3>
-                    <nav class="v4-footer-nav">
-                        <a href="index4.html" class="v4-footer-link">ホーム</a>
-                        <a href="business.html" class="v4-footer-link">事業内容</a>
-                        <a href="work.html" class="v4-footer-link">施工事例</a>
-                        <a href="company.html" class="v4-footer-link">会社概要</a>
-                        <a href="#recruit" class="v4-footer-link">採用情報</a>
-                    </nav>
-                </div>
-            </div>
-            
-            <div class="v4-footer-copyright">
-                <p>&copy; 2025 五料産業株式会社. All Rights Reserved.</p>
-            </div>
-        </div>
-        
-        <!-- Contact Bar -->
-        <div class="v4-contact-bar">
-            <div class="v4-contact-item v4-contact-phone">
-                <div class="v4-contact-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 16.92V19.92C22 20.4696 21.5523 20.9167 21.0025 20.9167C10.0025 20.9167 1 11.9142 1 0.916667C1 0.367035 1.44772 -0.0833333 2 -0.0833333H5C5.55228 -0.0833333 6 0.367035 6 0.916667C6 2.99167 6.35 4.99167 7 6.84167C7.13 7.23167 7.03 7.66167 6.72 7.96167L4.79 9.89167C6.34 13.0417 8.96 15.6617 12.11 17.2117L14.04 15.2817C14.34 14.9717 14.77 14.8717 15.16 15.0017C17.01 15.6517 19.01 16.0017 21.09 16.0017C21.6423 16.0017 22.09 16.4487 22.09 16.9983L22 16.92Z" fill="currentColor"/>
-                    </svg>
-                </div>
-                <div class="v4-contact-content">
-                    <p class="v4-contact-number">0270-65-2137</p>
-                    <p class="v4-contact-time">受付: 9:00～17:00</p>
+                <!-- 対応エリア情報 -->
+                <div class="footer-area">
+                    <h3 class="footer-area-title">対応エリア</h3>
+                    <div class="footer-area-content">
+                        <p class="footer-area-text">
+                            【群馬県】<br>
+                            前橋市、高崎市、太田市、伊勢崎市、渋川市、桐生市、みどり市、館林市、邑楽郡、安中市、藤岡市等
+                        </p>
+                        <p class="footer-area-text">
+                            【埼玉県】<br>
+                            本庄市、深谷市
+                        </p>
+                        <p class="footer-area-text">
+                            【栃木県】<br>
+                            佐野市、足利市
+                        </p>
+                    </div>
                 </div>
             </div>
-            
-            <a href="recruit.html#contact" class="v4-contact-item v4-contact-estimate">
-                <div class="v4-contact-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
-                    </svg>
+            <div class="footer-right">
+                <div class="footer-map">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d25722.988828147685!2d139.118736!3d36.303246!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601eec0196b7b73d%3A0x6400afbcf836ea3e!2z5LqU5paZ55Sj5qWt77yI5qCq77yJ!5e0!3m2!1sja!2sus!4v1760701046504!5m2!1sja!2sus"
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
-                <div class="v4-contact-content">
-                    <p class="v4-contact-label">\WEBで簡単!/</p>
-                    <p class="v4-contact-title">無料お見積もり</p>
-                    <!-- <p class="v4-contact-time">24時間受付中!!</p> -->
-                </div>
-                <div class="v4-contact-arrow">›</div>
-            </a>
-            
-            <a href="recruit.html#contact" class="v4-contact-item v4-contact-reservation">
-                <div class="v4-contact-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div class="v4-contact-content">
-                    <p class="v4-contact-label">\一緒に働きませんか？/</p>
-                    <p class="v4-contact-title">採用エントリー</p>
-                    <!-- <p class="v4-contact-time">24時間受付中!!</p> -->
-                </div>
-                <div class="v4-contact-arrow">›</div>
-            </a>
-            
-            <div class="v4-contact-item v4-contact-message">
-                <p class="v4-contact-message-text">リフォーム、建築、外構、何でもご相談ください!</p>
             </div>
         </div>
     </footer>
+
+    <!-- Contact Bar -->
+    <div class="v4-contact-bar">
+        <div class="v4-contact-item v4-contact-phone">
+            <div class="v4-contact-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 16.92V19.92C22 20.4696 21.5523 20.9167 21.0025 20.9167C10.0025 20.9167 1 11.9142 1 0.916667C1 0.367035 1.44772 -0.0833333 2 -0.0833333H5C5.55228 -0.0833333 6 0.367035 6 0.916667C6 2.99167 6.35 4.99167 7 6.84167C7.13 7.23167 7.03 7.66167 6.72 7.96167L4.79 9.89167C6.34 13.0417 8.96 15.6617 12.11 17.2117L14.04 15.2817C14.34 14.9717 14.77 14.8717 15.16 15.0017C17.01 15.6517 19.01 16.0017 21.09 16.0017C21.6423 16.0017 22.09 16.4487 22.09 16.9983L22 16.92Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="v4-contact-content">
+                <p class="v4-contact-number">0270-65-2137</p>
+                <p class="v4-contact-time">受付: 9:00～17:00</p>
+            </div>
+        </div>
+        
+        <a href="recruit.html#contact" class="v4-contact-item v4-contact-estimate">
+            <div class="v4-contact-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="v4-contact-content">
+                <p class="v4-contact-label">\WEBで簡単!/</p>
+                <p class="v4-contact-title">無料お見積もり</p>
+            </div>
+            <div class="v4-contact-arrow">›</div>
+        </a>
+        
+        <a href="recruit.html#contact" class="v4-contact-item v4-contact-reservation">
+            <div class="v4-contact-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="v4-contact-content">
+                <p class="v4-contact-label">\一緒に働きませんか？/</p>
+                <p class="v4-contact-title">採用エントリー</p>
+            </div>
+            <div class="v4-contact-arrow">›</div>
+        </a>
+        
+        <div class="v4-contact-item v4-contact-message">
+            <p class="v4-contact-message-text">リフォーム、建築、外構、何でもご相談ください!</p>
+        </div>
+    </div>
 
     <script src="script4.js"></script>
 </body>
