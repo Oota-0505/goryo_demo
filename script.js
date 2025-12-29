@@ -8,10 +8,17 @@ function initHeroSlider() {
     heroSlides = document.querySelectorAll('.hero-slide');
     totalSlides = heroSlides.length;
     
+    console.log('Hero slider initialized:', totalSlides, 'slides found');
+    
     if (totalSlides > 0) {
         // すべてのスライドを非アクティブにする
         heroSlides.forEach(slide => {
             slide.classList.remove('active');
+            // パララックス効果をリセット
+            const img = slide.querySelector('img');
+            if (img) {
+                img.style.transform = '';
+            }
         });
         
         // 最初のスライドをアクティブにする
@@ -21,30 +28,61 @@ function initHeroSlider() {
         if (heroSliderInterval) {
             clearInterval(heroSliderInterval);
         }
-        heroSliderInterval = setInterval(nextSlide, 3000);
+        heroSliderInterval = setInterval(() => {
+            console.log('Auto slide triggered, current:', currentSlide);
+            nextSlide();
+        }, 3000);
+        
+        console.log('Auto slide interval started');
     }
 }
 
 function showSlide(index) {
-    if (totalSlides === 0) return;
-    
-    // すべてのスライドを非アクティブにする
-    heroSlides.forEach(slide => {
-        slide.classList.remove('active');
-    });
-    
-    // 指定されたスライドをアクティブにする
-    if (heroSlides[index]) {
-        heroSlides[index].classList.add('active');
+    if (totalSlides === 0 || index < 0 || index >= totalSlides) {
+        console.log('showSlide: Invalid index', index, 'totalSlides:', totalSlides);
+        return;
     }
     
+    console.log('showSlide: Showing slide', index);
+    
+    // 現在のスライドインデックスを更新
     currentSlide = index;
+    
+    // すべてのスライドを非アクティブにする
+    heroSlides.forEach((slide, i) => {
+        if (i === index) {
+            // アクティブにするスライド
+            slide.classList.add('active');
+            console.log('Slide', i, 'activated');
+        } else {
+            // 非アクティブなスライド
+            slide.classList.remove('active');
+            // 非アクティブなスライドのパララックス効果をリセット
+            const img = slide.querySelector('img');
+            if (img) {
+                img.style.transform = '';
+            }
+        }
+    });
+    
+    // スライド切り替え完了後にパララックス効果を再計算
+    // 少し遅延を入れて、CSSトランジションと同期させる
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            if (window.updateHeroParallax) {
+                window.updateHeroParallax();
+            }
+        }, 50);
+    });
 }
 
 function nextSlide() {
     if (totalSlides > 0) {
         const nextIndex = (currentSlide + 1) % totalSlides;
+        console.log('nextSlide: Moving from', currentSlide, 'to', nextIndex);
         showSlide(nextIndex);
+    } else {
+        console.log('nextSlide: No slides available');
     }
 }
 
@@ -193,8 +231,36 @@ function initParallax() {
     const parallaxElements = document.querySelectorAll('.parallax-bg');
     let ticking = false;
 
+    // ヒーロー画像のパララックス効果を更新する関数（外部から呼び出し可能）
+    function updateHeroParallax() {
+        // heroSlidesが定義されているか確認
+        if (!heroSlides || heroSlides.length === 0) {
+            heroSlides = document.querySelectorAll('.hero-slide');
+        }
+        
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // すべてのスライドの画像を処理
+        heroSlides.forEach(slide => {
+            const img = slide.querySelector('img');
+            if (!img) return;
+            
+            if (slide.classList.contains('active')) {
+                // アクティブなスライドの画像のみにパララックス効果を適用
+                const yPos = -(scrollTop * 0.2);
+                img.style.transform = `translateY(${yPos}px) scale(1.05)`;
+            } else {
+                // 非アクティブなスライドの画像はtransformをリセット
+                img.style.transform = '';
+            }
+        });
+    }
+    
+    // 外部から呼び出せるようにグローバルに公開
+    window.updateHeroParallax = updateHeroParallax;
+
     function updateParallax() {
-        const scrollTop = window.pageYOffset;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         parallaxElements.forEach(element => {
             const speed = element.classList.contains('parallax-slow') ? 0.5 :
@@ -206,11 +272,7 @@ function initParallax() {
         });
 
         // Hero images parallax - アクティブなスライドの画像のみに適用
-        const activeHeroImage = document.querySelector('.hero-slide.active img');
-        if (activeHeroImage) {
-            const yPos = -(scrollTop * 0.2);
-            activeHeroImage.style.transform = `translateY(${yPos}px) scale(1.05)`;
-        }
+        updateHeroParallax();
 
         ticking = false;
     }
@@ -222,18 +284,85 @@ function initParallax() {
         }
     }
 
+    // スクロールイベントリスナーを追加
     window.addEventListener('scroll', requestTick, { passive: true });
+    
+    // 初期化時に一度実行（ページ読み込み時のスクロール位置に対応）
+    updateParallax();
+}
+
+// Scroll Animations
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
+    console.log('[ScrollAnim] 初期化開始 - 要素数:', animatedElements.length);
+    
+    if (animatedElements.length === 0) {
+        console.log('[ScrollAnim] 対象要素が見つかりません');
+        return;
+    }
+    
+    // IntersectionObserverが使用可能か確認
+    if (!('IntersectionObserver' in window)) {
+        console.log('[ScrollAnim] IntersectionObserver非対応 - 全要素を即時表示');
+        animatedElements.forEach(el => el.classList.add('visible'));
+        return;
+    }
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                console.log('[ScrollAnim] 表示:', entry.target.classList.toString());
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // 初期表示時に画面内にある要素を即座に表示
+    requestAnimationFrame(() => {
+        animatedElements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                console.log('[ScrollAnim] 初期表示:', element.classList.toString());
+                element.classList.add('visible');
+            }
+        });
+    });
+    
+    console.log('[ScrollAnim] 初期化完了');
 }
 
 // Initialize slider when page loads
 document.addEventListener('DOMContentLoaded', () => {
+    // パララックス効果を先に初期化（updateHeroParallax関数を利用可能にするため）
+    initParallax();
+    // その後、ヒーロースライダーを初期化
     initHeroSlider();
     initHeroHoverControl();
     initHeaderScroll();
     initFloatingCTA();
     initHamburgerMenu();
     initFlowSteps();
-    initParallax();
+    // スクロールアニメーションを初期化
+    initScrollAnimations();
+    
+    // 初期化完了後にパララックス効果を一度実行
+    setTimeout(() => {
+        if (window.updateHeroParallax) {
+            window.updateHeroParallax();
+        }
+    }, 100);
 });
 
 // Header scroll effect

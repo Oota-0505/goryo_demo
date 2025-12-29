@@ -278,14 +278,16 @@ img {
     height: 100%;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1s ease-in-out, visibility 1s;
+    transition: opacity 1s ease-in-out;
     z-index: 1;
+    pointer-events: none;
 }
 
 .hero-slide.active {
     opacity: 1;
     visibility: visible;
     z-index: 2;
+    pointer-events: auto;
 }
 
 .hero-slide img {
@@ -294,6 +296,7 @@ img {
     object-fit: cover;
     display: block;
     will-change: transform;
+    transition: transform 0.3s ease-out;
 }
 
 .hero-content {
@@ -2075,5 +2078,169 @@ img {
     
     .footer {
         padding-bottom: 350px;
+    }
+}
+
+/* ========================================
+   Scroll Animations
+   ======================================== */
+
+/* Base animation keyframes */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Initial state - hidden with transform */
+[data-scroll-animate] {
+    opacity: 0;
+    transition: none;
+}
+
+[data-scroll-animate="fade-in-up"] {
+    transform: translateY(50px);
+}
+
+[data-scroll-animate="fade-in-left"] {
+    transform: translateX(-50px);
+}
+
+[data-scroll-animate="fade-in-right"] {
+    transform: translateX(50px);
+}
+
+[data-scroll-animate="zoom-in"] {
+    transform: scale(0.85);
+}
+
+/* Animated state - using transitions for smooth effect */
+[data-scroll-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Delay variations */
+[data-scroll-animate][data-delay="100"].is-visible {
+    transition-delay: 0.1s;
+}
+
+[data-scroll-animate][data-delay="200"].is-visible {
+    transition-delay: 0.2s;
+}
+
+[data-scroll-animate][data-delay="300"].is-visible {
+    transition-delay: 0.3s;
+}
+
+[data-scroll-animate][data-delay="400"].is-visible {
+    transition-delay: 0.4s;
+}
+
+/* Scroll Animation Classes */
+/* 初期状態と表示状態の両方を定義 */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* フェードイン・アップ */
+.animate-on-scroll.fade-in-up {
+    transform: translateY(30px);
+}
+
+/* フェードイン・左から */
+.animate-on-scroll.fade-in-left {
+    transform: translateX(-30px);
+}
+
+/* フェードイン・右から */
+.animate-on-scroll.fade-in-right {
+    transform: translateX(30px);
+}
+
+/* ズームイン */
+.animate-on-scroll.zoom-in {
+    transform: scale(0.95);
+}
+
+/* 表示状態 - visible クラスが追加されたとき */
+.animate-on-scroll.visible {
+    opacity: 1 !important;
+    transform: translateY(0) translateX(0) scale(1) !important;
+}
+
+/* 遅延クラス */
+.animate-on-scroll.delay-100 {
+    transition-delay: 0.1s;
+}
+
+.animate-on-scroll.delay-200 {
+    transition-delay: 0.2s;
+}
+
+.animate-on-scroll.delay-300 {
+    transition-delay: 0.3s;
+}
+
+.animate-on-scroll.delay-400 {
+    transition-delay: 0.4s;
+}
+
+/* フォールバック：JavaScriptが動作しない場合の対応 */
+.no-js .animate-on-scroll,
+noscript ~ .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll,
+    [data-scroll-animate] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
     }
 }
